@@ -17,7 +17,7 @@ fun VideoPlayer(
     playerManager: PlayerManager,
     modifier: Modifier = Modifier
 ) {
-    val player = remember { playerManager.player }
+    val exoPlayer = remember { playerManager.player }
 
     AndroidView(
         modifier = modifier
@@ -25,14 +25,14 @@ fun VideoPlayer(
             .aspectRatio(16f / 9f),
         factory = { context ->
             PlayerView(context).apply {
-                player = this@apply.player
+                this.player = exoPlayer
                 useController = true
                 resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
                 setShowSubtitleButton(false)
             }
         },
         update = { view ->
-            view.player = player
+            view.player = exoPlayer
         }
     )
 }

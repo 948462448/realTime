@@ -28,6 +28,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,7 +47,7 @@ fun MainScreen(playerManager: PlayerManager) {
     val context = LocalContext.current
     var showUrlInput by remember { mutableStateOf(false) }
     var urlText by remember { mutableStateOf("") }
-    val playbackState by playerManager.playbackState
+    val playbackState by playerManager.playbackState.collectAsState()
 
     val filePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocument()
